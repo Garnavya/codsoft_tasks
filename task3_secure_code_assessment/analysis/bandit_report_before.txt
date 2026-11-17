@@ -1,0 +1,99 @@
+Run started:2026-11-17 16:31:12.249377
+
+Test results:
+>> Issue: [B404:blacklist] Consider possible security implications associated with the subprocess module.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.8/blacklists/blacklist_imports.html#b404-import-subprocess
+   Location: C:\Users\garna\Desktop\codsoft_tasks\task3_secure_code_assessment\analysis\..\target_app\vulnerable_app.py:17:0
+16	import sqlite3
+17	import subprocess
+18	from flask import Flask, request, jsonify, render_template_string
+
+--------------------------------------------------
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'hardcoded_insecure_development_secret_key_98765'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.8/plugins/b105_hardcoded_password_string.html
+   Location: C:\Users\garna\Desktop\codsoft_tasks\task3_secure_code_assessment\analysis\..\target_app\vulnerable_app.py:31:17
+30	# ============================================================================
+31	app.secret_key = "hardcoded_insecure_development_secret_key_98765"
+32	STATIC_ADMIN_USER = "admin"
+
+--------------------------------------------------
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'admin123'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.8/plugins/b105_hardcoded_password_string.html
+   Location: C:\Users\garna\Desktop\codsoft_tasks\task3_secure_code_assessment\analysis\..\target_app\vulnerable_app.py:33:20
+32	STATIC_ADMIN_USER = "admin"
+33	STATIC_ADMIN_PASS = "admin123"
+34	
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.8/plugins/b608_hardcoded_sql_expressions.html
+   Location: C:\Users\garna\Desktop\codsoft_tasks\task3_secure_code_assessment\analysis\..\target_app\vulnerable_app.py:98:12
+97	    # VULN-01: Raw string formatting directly into SQL query
+98	    query = f"SELECT id, username, role FROM users WHERE username = '{username}' AND password = '{password}'"
+99	    try:
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Medium
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.8/plugins/b608_hardcoded_sql_expressions.html
+   Location: C:\Users\garna\Desktop\codsoft_tasks\task3_secure_code_assessment\analysis\..\target_app\vulnerable_app.py:174:19
+173	    cursor = conn.cursor()
+174	    cursor.execute(f"DELETE FROM users WHERE id = {target_id}")
+175	    conn.commit()
+
+--------------------------------------------------
+>> Issue: [B602:subprocess_popen_with_shell_equals_true] subprocess call with shell=True identified, security issue.
+   Severity: High   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.8/plugins/b602_subprocess_popen_with_shell_equals_true.html
+   Location: C:\Users\garna\Desktop\codsoft_tasks\task3_secure_code_assessment\analysis\..\target_app\vulnerable_app.py:194:17
+193	    try:
+194	        output = subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT, text=True)
+195	        return jsonify({"host": host, "output": output})
+
+--------------------------------------------------
+>> Issue: [B201:flask_debug_true] A Flask app appears to be run with debug=True, which exposes the Werkzeug debugger and allows the execution of arbitrary code.
+   Severity: High   Confidence: Medium
+   CWE: CWE-94 (https://cwe.mitre.org/data/definitions/94.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.8/plugins/b201_flask_debug_true.html
+   Location: C:\Users\garna\Desktop\codsoft_tasks\task3_secure_code_assessment\analysis\..\target_app\vulnerable_app.py:222:4
+221	if __name__ == "__main__":
+222	    app.run(debug=True, host="0.0.0.0", port=5000)
+
+--------------------------------------------------
+>> Issue: [B104:hardcoded_bind_all_interfaces] Possible binding to all interfaces.
+   Severity: Medium   Confidence: Medium
+   CWE: CWE-605 (https://cwe.mitre.org/data/definitions/605.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.8/plugins/b104_hardcoded_bind_all_interfaces.html
+   Location: C:\Users\garna\Desktop\codsoft_tasks\task3_secure_code_assessment\analysis\..\target_app\vulnerable_app.py:222:29
+221	if __name__ == "__main__":
+222	    app.run(debug=True, host="0.0.0.0", port=5000)
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 115
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 3
+		Medium: 3
+		High: 2
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 1
+		Medium: 5
+		High: 2
+Files skipped (0):
