@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-World Breach Case Studies | PhishAware</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="brand">
+        <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+          <span>← Back to Dashboard</span>
+        </a>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle theme">🌓 Theme</button>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div style="margin-bottom: 2rem;">
+      <span class="hero-badge">Special Forensic Module</span>
+      <h1 style="font-size: 2.2rem; margin: 0.5rem 0 1rem 0;">Real-World Cyber Breach Case Studies</h1>
+      <p style="color: var(--text-muted); font-size: 1.1rem;">
+        Analyzing real-world historical compromises demonstrates that technical perimeter defenses fail when the human factor is bypassed. Examine the root causes and defensive takeaways from landmark cybersecurity incidents.
+      </p>
+    </div>
+
+    <!-- Case Studies Dynamic Container -->
+    <div id="case-studies-container" style="display: flex; flex-direction: column; gap: 2rem;"></div>
+
+    <div style="text-align: center; margin: 3rem 0;">
+      <button id="mark-cases-done-btn" class="btn btn-success" style="font-size: 1rem; padding: 0.85rem 2rem;">
+        ✔ Complete Case Studies Review
+      </button>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; margin-top: 2rem;">
+      <a href="lesson5-defense-and-response.html" class="btn btn-secondary">← Back to Lesson 5</a>
+      <a href="scenario-quiz.html" class="btn btn-primary">Next: Scenario Lab ("Spot the Phish") →</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>CodSoft Cyber Security Internship - Task 2: Phishing Awareness Platform</p>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/data/cases.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("case-studies-container");
+
+      CASE_STUDIES.forEach((study) => {
+        const card = document.createElement("article");
+        card.className = "module-card";
+        card.style.borderTop = "4px solid var(--primary)";
+
+        const title = document.createElement("h2");
+        title.style.fontSize = "1.5rem";
+        title.style.marginBottom = "0.35rem";
+        title.textContent = study.title;
+
+        const metaRow = document.createElement("div");
+        metaRow.style.fontSize = "0.85rem";
+        metaRow.style.color = "var(--text-subtle)";
+        metaRow.style.marginBottom = "1.25rem";
+        metaRow.textContent = `Date: ${study.year} | Target: ${study.target} | Vector: ${study.primaryTechnique}`;
+
+        const summaryHeading = document.createElement("h4");
+        summaryHeading.textContent = "Incident Summary:";
+        summaryHeading.style.color = "var(--text-main)";
+
+        const summary = document.createElement("p");
+        summary.textContent = study.summary;
+        summary.style.marginBottom = "1rem";
+
+        const impactHeading = document.createElement("h4");
+        impactHeading.textContent = "Impact & Blast Radius:";
+        impactHeading.style.color = "var(--danger)";
+
+        const impact = document.createElement("p");
+        impact.textContent = study.impact;
+        impact.style.marginBottom = "1rem";
+
+        const rootHeading = document.createElement("h4");
+        rootHeading.textContent = "Root Causes:";
+        const rootList = document.createElement("ul");
+        rootList.style.marginLeft = "1.5rem";
+        rootList.style.marginBottom = "1rem";
+        rootList.style.fontSize = "0.95rem";
+        rootList.style.color = "var(--text-muted)";
+        study.rootCause.forEach(rc => {
+          const li = document.createElement("li");
+          li.textContent = rc;
+          rootList.appendChild(li);
+        });
+
+        const lessonsHeading = document.createElement("h4");
+        lessonsHeading.textContent = "Defensive Engineering Lessons:";
+        lessonsHeading.style.color = "var(--success)";
+        const lessonsList = document.createElement("ul");
+        lessonsList.style.marginLeft = "1.5rem";
+        lessonsList.style.marginBottom = "1.25rem";
+        lessonsList.style.fontSize = "0.95rem";
+        lessonsList.style.color = "var(--text-muted)";
+        study.defensiveLessons.forEach(dl => {
+          const li = document.createElement("li");
+          li.textContent = dl;
+          lessonsList.appendChild(li);
+        });
+
+        const sourceNote = document.createElement("div");
+        sourceNote.style.background = "var(--bg-alt)";
+        sourceNote.style.padding = "0.75rem";
+        sourceNote.style.borderRadius = "6px";
+        sourceNote.style.fontSize = "0.8rem";
+        sourceNote.style.color = "var(--text-subtle)";
+        sourceNote.textContent = `Primary Documentation & Citations: ${study.sources}`;
+
+        card.appendChild(title);
+        card.appendChild(metaRow);
+        card.appendChild(summaryHeading);
+        card.appendChild(summary);
+        card.appendChild(impactHeading);
+        card.appendChild(impact);
+        card.appendChild(rootHeading);
+        card.appendChild(rootList);
+        card.appendChild(lessonsHeading);
+        card.appendChild(lessonsList);
+        card.appendChild(sourceNote);
+
+        container.appendChild(card);
+      });
+
+      const markBtn = document.getElementById("mark-cases-done-btn");
+      if (AppState.isCompleted("cases")) {
+        markBtn.textContent = "✔ Case Studies Completed";
+        markBtn.classList.remove("btn-success");
+        markBtn.classList.add("btn-secondary");
+      }
+
+      markBtn.addEventListener("click", () => {
+        AppState.markCompleted("cases", 100);
+        markBtn.textContent = "✔ Case Studies Completed";
+        markBtn.classList.remove("btn-success");
+        markBtn.classList.add("btn-secondary");
+        alert("Case studies successfully marked as complete! Your progress has been updated.");
+      });
+    });
+  </script>
+</body>
+</html>

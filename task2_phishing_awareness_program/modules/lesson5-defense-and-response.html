@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 5: Practical Defense & Indian Cyber Safety | PhishAware</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="brand">
+        <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+          <span>← Back to Dashboard</span>
+        </a>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle theme">🌓 Theme</button>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div style="margin-bottom: 2rem;">
+      <span class="hero-badge">Lesson 05</span>
+      <h1 style="font-size: 2.2rem; margin: 0.5rem 0 1rem 0;">Practical Defense, Incident Response & Indian Cyber Safety</h1>
+      <p style="color: var(--text-muted); font-size: 1.1rem;">
+        Defending against modern social engineering requires both personal security hygiene and rapid organizational incident response. Explore actionable technical countermeasures and official Indian cyber reporting channels.
+      </p>
+    </div>
+
+    <!-- Practical Defense Pillars -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.4rem; margin-bottom: 1.25rem;">Key Defensive Safeguards</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+
+        <div class="module-card">
+          <h3 style="color: var(--primary);">1. Phishing-Resistant MFA (FIDO2)</h3>
+          <p>
+            Standard SMS OTPs can be intercepted via SIM-swapping or reverse-proxy phishing (AiTM). Hardware security keys (FIDO2 / WebAuthn) bind authentication to the exact domain origin, stopping credential theft even if you submit data to a fake site.
+          </p>
+        </div>
+
+        <div class="module-card">
+          <h3 style="color: var(--secondary);">2. Dedicated Password Managers</h3>
+          <p>
+            Password managers generate unique, high-entropy passwords for every account. More importantly, they will automatically refuse to autofill your credentials if the browser's domain differs by even one letter from the real website.
+          </p>
+        </div>
+
+        <div class="module-card">
+          <h3 style="color: var(--accent-purple);">3. Out-of-Band Verification</h3>
+          <p>
+            Never verify a suspicious request using contact information provided inside the message itself. Always use an established, independent channel (e.g., dialing a verified colleague on their known corporate phone number or visiting the official bookmarked portal).
+          </p>
+        </div>
+
+        <div class="module-card">
+          <h3 style="color: var(--success);">4. Hover & Inspect (URL Hygiene)</h3>
+          <p>
+            Always inspect raw hyperlinks before interacting. Check the true registered domain (the word immediately preceding .com, .org, or .gov.in) rather than trusting display labels or subdomains.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Incident Response Checklist -->
+    <section class="module-card" style="border: 2px solid var(--danger); margin-bottom: 3rem;">
+      <h2 style="font-size: 1.35rem; color: var(--danger); margin-bottom: 1rem;">🚨 "What to Do If You Clicked" — Rapid Response Checklist</h2>
+      <p style="margin-bottom: 1rem; color: var(--text-muted);">
+        Mistakes happen. What matters is the speed and correctness of your immediate response. Follow this containment sequence:
+      </p>
+
+      <ol style="margin-left: 1.5rem; line-height: 1.8; color: var(--text-main);">
+        <li>
+          <strong>Disconnect Immediately (If you downloaded an attachment):</strong>
+          Unplug the Ethernet cable or disconnect from Wi-Fi immediately to cut off potential malware command-and-control (C2) communication.
+        </li>
+        <li>
+          <strong>Change Compromised Credentials (From a Clean Device):</strong>
+          If you entered passwords into a fake form, immediately log in from another known-clean computer or smartphone and change your password.
+        </li>
+        <li>
+          <strong>Terminate Active Sessions:</strong>
+          In your account security settings, select <em>"Log out of all other devices/sessions"</em> to invalidate any stolen session cookies.
+        </li>
+        <li>
+          <strong>Notify Internal Security / IT Helpdesk:</strong>
+          Inform your Security Operations Center (SOC) or IT team right away. They can block malicious domains on firewalls, review proxy logs, and isolate affected assets.
+        </li>
+        <li>
+          <strong>Freeze Affected Financial Instruments:</strong>
+          If credit card or banking details were disclosed, immediately lock the card via your mobile banking application or phone hotline.
+        </li>
+      </ol>
+    </section>
+
+    <!-- India-Specific Cyber Safety Section -->
+    <section class="module-card" style="background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-alt) 100%); border-left: 6px solid #f97316; margin-bottom: 3rem;">
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+        <span style="font-size: 1.8rem;">🇮🇳</span>
+        <h2 style="font-size: 1.4rem;">Special Focus: Digital Safety & Reporting in India</h2>
+      </div>
+      <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+        Cyber fraud across India commonly targets digital payments (UPI), mobile banking, and delivery services. Understand these prevalent domestic attack vectors:
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-bottom: 2rem;">
+        <div style="background: var(--bg-surface); padding: 1.25rem; border-radius: 8px; border: 1px solid var(--border-color);">
+          <h4 style="color: #ea580c; margin-bottom: 0.5rem;">The Golden UPI Rule</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">
+            <strong>You NEVER enter your UPI PIN to receive money.</strong> Entering a PIN authorizes a debit from your account. Fraudulent buyers on OLX/Marketplaces frequently send fake QR codes or "Collect Requests" claiming: <em>"Scan and enter PIN to accept payment."</em>
+          </p>
+        </div>
+
+        <div style="background: var(--bg-surface); padding: 1.25rem; border-radius: 8px; border: 1px solid var(--border-color);">
+          <h4 style="color: #ea580c; margin-bottom: 0.5rem;">Bank & SIM KYC Update Scams</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">
+            SMS messages claiming your bank account, PAN card, or SIM card will be deactivated within 24 hours unless you click an unverified APK link or install remote access software (like AnyDesk or TeamViewer).
+          </p>
+        </div>
+
+        <div style="background: var(--bg-surface); padding: 1.25rem; border-radius: 8px; border: 1px solid var(--border-color);">
+          <h4 style="color: #ea580c; margin-bottom: 0.5rem;">Fake Courier / India Post Links</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">
+            Text messages claiming a parcel has an incomplete address, demanding a token ₹5 or ₹25 re-delivery fee. The fake portal captures your full debit card details and CVV.
+          </p>
+        </div>
+      </div>
+
+      <!-- Reporting Channels -->
+      <div style="background: var(--bg-surface); padding: 1.5rem; border-radius: 8px; border: 2px solid #ea580c;">
+        <h3 style="color: #ea580c; font-size: 1.2rem; margin-bottom: 0.75rem;">Where to Report Cyber Fraud in India:</h3>
+        <ul style="margin-left: 1.5rem; line-height: 1.8; font-size: 0.95rem;">
+          <li>
+            <strong>National Cyber Crime Helpline Number: 1930</strong> (Toll-free national citizen financial cyber fraud reporting helpline managed by the Indian Cyber Crime Coordination Centre - I4C, Ministry of Home Affairs). Calling within the "Golden Hour" of a fraudulent transaction allows rapid freezing of stolen funds across bank nodes.
+          </li>
+          <li>
+            <strong>Official National Cybercrime Reporting Portal:</strong> <a href="https://cybercrime.gov.in" target="_blank" rel="noopener noreferrer">https://cybercrime.gov.in</a> (Central portal for lodging FIRs and formal complaints regarding financial fraud, identity theft, and cyber harassment).
+          </li>
+          <li>
+            <strong>Chakshu Portal (Sanchar Saathi):</strong> Report fraudulent calls, SMS, and WhatsApp spam numbers to the Department of Telecommunications (DoT) via <a href="https://sancharsaathi.gov.in" target="_blank" rel="noopener noreferrer">sancharsaathi.gov.in</a>.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section class="quiz-section">
+      <div id="lesson5-quiz-container"></div>
+    </section>
+
+    <div style="display: flex; justify-content: space-between; margin-top: 2rem;">
+      <a href="lesson4-social-engineering.html" class="btn btn-secondary">← Back to Lesson 4</a>
+      <a href="case-studies.html" class="btn btn-primary">Next: Historical Case Studies →</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>CodSoft Cyber Security Internship - Task 2: Phishing Awareness Platform</p>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/data/quizzes.js"></script>
+  <script src="../js/quiz.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      new QuizEngine("lesson5-quiz-container", QUIZ_DATA.lesson5, "lesson5");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CodSoft Phishing Awareness Training Program - An interactive cybersecurity educational module.">
+  <title>Phishing Awareness Training Program | CodSoft Cyber Security</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="brand">
+        <svg class="brand-icon" viewBox="0 0 24 24">
+          <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+        </svg>
+        <span>PhishAware Academy</span>
+      </div>
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Dashboard</a></li>
+          <li><a href="modules/case-studies.html">Case Studies</a></li>
+          <li><a href="modules/scenario-quiz.html">Spot the Phish</a></li>
+          <li><a href="modules/final-assessment.html">Final Exam</a></li>
+          <li>
+            <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle dark/light mode">
+              🌓 Theme
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    
+    <!-- Hero Banner -->
+    <section class="hero">
+      <span class="hero-badge">Cybersecurity Internship Project</span>
+      <h1 class="hero-title">Defend Against Phishing & Social Engineering</h1>
+      <p class="hero-subtitle">
+        Welcome to the CodSoft Cyber Security Phishing Awareness Program. Learn to identify deceptive emails, recognize lookalike domains and fraudulent websites, resist psychological manipulation, and implement enterprise-grade defensive hygiene.
+      </p>
+
+      <!-- Progress Tracking Component -->
+      <div class="progress-card">
+        <div class="progress-info">
+          <div class="progress-label-row">
+            <span>Overall Curriculum Progress</span>
+            <span id="overall-progress-text">0% Complete</span>
+          </div>
+          <div class="progress-bar-bg" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+            <div id="overall-progress-fill" class="progress-bar-fill"></div>
+          </div>
+        </div>
+        <button id="reset-progress-btn" class="btn btn-secondary" style="font-size: 0.85rem;">
+          Reset Progress
+        </button>
+      </div>
+    </section>
+
+    <!-- Modules Grid -->
+    <section>
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Interactive Learning Modules</h2>
+      <div class="module-grid">
+
+        <!-- Module 1 -->
+        <article class="module-card">
+          <div class="module-meta">
+            <span class="module-number">Lesson 01</span>
+            <span id="badge-lesson1" class="status-badge">Not Started</span>
+          </div>
+          <h3>What is Phishing? Vectors & Taxonomy</h3>
+          <p>Explore email phishing, spear phishing, executive whaling, smishing (SMS), vishing (voice), quishing (QR codes), and clone phishing.</p>
+          <a href="modules/lesson1-what-is-phishing.html" class="btn btn-primary">Start Lesson 1 →</a>
+        </article>
+
+        <!-- Module 2 -->
+        <article class="module-card">
+          <div class="module-meta">
+            <span class="module-number">Lesson 02</span>
+            <span id="badge-lesson2" class="status-badge">Not Started</span>
+          </div>
+          <h3>Spotting Suspicious Emails</h3>
+          <p>Dissect headers, sender spoofing, domain mismatches, and artificial urgency with our interactive annotated email inspector.</p>
+          <a href="modules/lesson2-spotting-emails.html" class="btn btn-primary">Start Lesson 2 →</a>
+        </article>
+
+        <!-- Module 3 -->
+        <article class="module-card">
+          <div class="module-meta">
+            <span class="module-number">Lesson 03</span>
+            <span id="badge-lesson3" class="status-badge">Not Started</span>
+          </div>
+          <h3>Fake Login Pages & Fraudulent Websites</h3>
+          <p>Analyze URL anatomy, typosquatting, IDN homographs, and the critical misconception that the HTTPS padlock means a site is safe.</p>
+          <a href="modules/lesson3-fake-logins-websites.html" class="btn btn-primary">Start Lesson 3 →</a>
+        </article>
+
+        <!-- Module 4 -->
+        <article class="module-card">
+          <div class="module-meta">
+            <span class="module-number">Lesson 04</span>
+            <span id="badge-lesson4" class="status-badge">Not Started</span>
+          </div>
+          <h3>Social Engineering Psychology</h3>
+          <p>Understand how attackers exploit urgency, fear, authority, greed, curiosity, pretexting, baiting, tailgating, and impersonation.</p>
+          <a href="modules/lesson4-social-engineering.html" class="btn btn-primary">Start Lesson 4 →</a>
+        </article>
+
+        <!-- Module 5 -->
+        <article class="module-card">
+          <div class="module-meta">
+            <span class="module-number">Lesson 05</span>
+            <span id="badge-lesson5" class="status-badge">Not Started</span>
+          </div>
+          <h3>Practical Defense & Indian Cyber Safety</h3>
+          <p>Learn MFA (FIDO2), password managers, incident response steps, and reporting via the 1930 Helpline & cybercrime.gov.in.</p>
+          <a href="modules/lesson5-defense-and-response.html" class="btn btn-primary">Start Lesson 5 →</a>
+        </article>
+
+        <!-- Case Studies -->
+        <article class="module-card">
+          <div class="module-meta">
+            <span class="module-number">Special Section</span>
+            <span id="badge-cases" class="status-badge">Not Started</span>
+          </div>
+          <h3>Real-World Breach Case Studies</h3>
+          <p>In-depth technical analysis of high-profile incidents: Twitter 2020, DNC 2016, Evaldas Rimasauskas $120M BEC, and RSA 2011.</p>
+          <a href="modules/case-studies.html" class="btn btn-primary">View Case Studies →</a>
+        </article>
+
+        <!-- Scenario Quiz -->
+        <article class="module-card">
+          <div class="module-meta">
+            <span class="module-number">Practical Lab</span>
+            <span id="badge-scenario_quiz" class="status-badge">Not Started</span>
+          </div>
+          <h3>Scenario Lab: Spot the Phish</h3>
+          <p>Test your defensive instincts against 6 realistic simulated workplace communications, from HR updates to courier SMS alerts.</p>
+          <a href="modules/scenario-quiz.html" class="btn btn-primary">Enter Lab →</a>
+        </article>
+
+        <!-- Final Exam -->
+        <article class="module-card" style="border: 2px solid var(--secondary);">
+          <div class="module-meta">
+            <span class="module-number" style="color: var(--primary);">Certification</span>
+            <span id="badge-final_assessment" class="status-badge">Not Started</span>
+          </div>
+          <h3>Comprehensive Assessment & Certificate</h3>
+          <p>Prove your mastery with a 15-question randomized final exam (80% passing grade) and generate your verifiable completion certificate.</p>
+          <a href="modules/final-assessment.html" class="btn btn-success">Take Final Exam 🎓</a>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>CodSoft Cyber Security Internship - Task 2: Phishing Awareness Training Platform</p>
+    <p style="margin-top: 0.35rem;">Educational & Defensive Security Resource | Pure Vanilla HTML, CSS, & JavaScript</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 3: Fake Login Pages & Fraudulent Websites | PhishAware</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="brand">
+        <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+          <span>← Back to Dashboard</span>
+        </a>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle theme">🌓 Theme</button>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div style="margin-bottom: 2rem;">
+      <span class="hero-badge">Lesson 03</span>
+      <h1 style="font-size: 2.2rem; margin: 0.5rem 0 1rem 0;">Fake Login Pages & Fraudulent Websites</h1>
+      <p style="color: var(--text-muted); font-size: 1.1rem;">
+        Threat actors routinely clone legitimate authentication interfaces to harvest user credentials and two-factor session tokens. Learn how URL structures work and why the green padlock icon does not guarantee safety.
+      </p>
+    </div>
+
+    <!-- URL Anatomy Guide -->
+    <section class="module-card" style="margin-bottom: 2.5rem;">
+      <h2 style="font-size: 1.4rem; margin-bottom: 1rem;">Anatomy of a Fraudulent URL</h2>
+      <p style="margin-bottom: 1.25rem;">
+        Attackers craft deceptive subdomains to mislead users who only scan the initial characters of a web address. Let us dissect how browser URL routing really functions:
+      </p>
+
+      <div style="background: var(--bg-alt); padding: 1.25rem; border-radius: 8px; font-family: var(--font-mono); font-size: 1rem; overflow-x: auto; margin-bottom: 1.25rem; border: 1px solid var(--border-color);">
+        <span style="color: var(--secondary);">https://</span><span style="color: var(--text-subtle);">login.secure-bank.com.</span><span style="background-color: var(--danger-light); color: var(--danger); font-weight: bold; padding: 2px 6px; border-radius: 4px;">attacker-portal.net</span><span style="color: var(--text-muted);">/auth/signin?session=xyz</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
+        <div style="background: var(--bg-surface); padding: 1rem; border-radius: 6px; border: 1px solid var(--border-color);">
+          <strong style="color: var(--secondary);">1. Scheme (https://)</strong>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Indicates TLS encryption in transit. Crucially, encryption does not equal safety!</p>
+        </div>
+        <div style="background: var(--bg-surface); padding: 1rem; border-radius: 6px; border: 1px solid var(--border-color);">
+          <strong style="color: var(--text-subtle);">2. Subdomain Prefix</strong>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">"login.secure-bank.com" is merely an arbitrary subdomain label controlled by the attacker.</p>
+        </div>
+        <div style="background: var(--bg-surface); padding: 1rem; border-radius: 6px; border: 2px solid var(--danger);">
+          <strong style="color: var(--danger);">3. Apex Domain (The Real Host)</strong>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;"><strong>attacker-portal.net</strong> is the actual destination server receiving your data.</p>
+        </div>
+        <div style="background: var(--bg-surface); padding: 1rem; border-radius: 6px; border: 1px solid var(--border-color);">
+          <strong style="color: var(--text-muted);">4. Path & Query</strong>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Routes the request to the attacker's harvesting script on their server.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- The HTTPS Padlock Misconception -->
+    <section class="module-card" style="border-left: 6px solid var(--warning); margin-bottom: 2.5rem;">
+      <h3 style="color: var(--warning); margin-bottom: 0.75rem;">⚠️ The Dangerous Misconception: "The Padlock Means It's Safe"</h3>
+      <p style="margin-bottom: 0.75rem;">
+        For decades, users were advised: <em>"Look for the padlock icon before entering credentials."</em> Today, this advice is obsolete and dangerous.
+      </p>
+      <ul style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.8;">
+        <li><strong>What HTTPS actually means:</strong> The data traveling between your browser and the remote server is encrypted against local network eavesdroppers (e.g., someone on coffee shop Wi-Fi).</li>
+        <li><strong>What HTTPS does NOT mean:</strong> It provides zero warranty regarding who owns the server or whether that server is honest. Over 80% of phishing websites now deploy valid SSL/TLS certificates issued free of charge by automated providers (such as Let's Encrypt or Cloudflare).</li>
+        <li><strong>Takeaway:</strong> An encrypted connection to a cybercriminal is still an encrypted transmission directly into an attacker's database!</li>
+      </ul>
+    </section>
+
+    <!-- Non-Functional Mockup Login Interface -->
+    <section>
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.75rem;">
+        <h2 style="font-size: 1.35rem;">Educational Mockup: Dissecting a Deceptive Login Interface</h2>
+        <span style="font-size: 0.85rem; color: var(--warning); font-weight: 700;">LAB DEMO: Completely Non-Functional</span>
+      </div>
+
+      <div class="mockup-container">
+        <!-- High Visibility Training Banner -->
+        <div class="mockup-warning-ribbon">
+          ⛔ TRAINING LAB EXAMPLE — COMPLETELY NON-FUNCTIONAL — NEVER ENTER REAL CREDENTIALS ⛔
+        </div>
+
+        <div class="browser-mock-window">
+          <!-- Mock Browser Navigation Bar -->
+          <div class="browser-mock-bar">
+            <div class="browser-dots">
+              <div class="browser-dot"></div>
+              <div class="browser-dot"></div>
+              <div class="browser-dot"></div>
+            </div>
+            <div class="browser-url-input">
+              <span>🔒 https://</span>
+              <span>accounts.portal.login.</span>
+              <span class="url-fake-domain">corpo-authenticator.xyz</span>
+              <span>/v2/signin</span>
+            </div>
+          </div>
+
+          <!-- Non-Functional Mockup Content -->
+          <div class="mock-form-content">
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+              <div style="width: 48px; height: 48px; background: var(--bg-alt); border-radius: 50%; margin: 0 auto 0.75rem auto; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--text-subtle);">
+                🏢
+              </div>
+              <h3 style="font-size: 1.25rem;">Enterprise Unified Sign-In</h3>
+              <p style="font-size: 0.85rem; color: var(--text-subtle);">Single Sign-On Authentication Gateway</p>
+            </div>
+
+            <!-- Disabled Form Elements -->
+            <form onsubmit="return false;" aria-disabled="true">
+              <div class="mock-input-group">
+                <label for="mock-user">Corporate Email or Username</label>
+                <input type="text" id="mock-user" class="mock-input" disabled value="user@organization.corp" autocomplete="off">
+              </div>
+
+              <div class="mock-input-group">
+                <label for="mock-pass">Password</label>
+                <input type="password" id="mock-pass" class="mock-input" disabled value="••••••••••••" autocomplete="off">
+              </div>
+
+              <button type="button" class="btn btn-secondary" style="width: 100%; cursor: not-allowed; opacity: 0.7;" disabled>
+                Sign In (Disabled for Security)
+              </button>
+            </form>
+
+            <div style="margin-top: 1.5rem; padding: 0.75rem; background: var(--bg-alt); border-radius: 6px; font-size: 0.8rem; color: var(--text-subtle); text-align: center;">
+              Notice the apex domain in the URL bar: <strong>corpo-authenticator.xyz</strong>.<br>
+              An authentic login would reside on your organization's verified domain (e.g., <code>login.microsoftonline.com</code> or <code>company.okta.com</code>).
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section class="quiz-section">
+      <div id="lesson3-quiz-container"></div>
+    </section>
+
+    <div style="display: flex; justify-content: space-between; margin-top: 2rem;">
+      <a href="lesson2-spotting-emails.html" class="btn btn-secondary">← Back to Lesson 2</a>
+      <a href="lesson4-social-engineering.html" class="btn btn-primary">Next: Lesson 4 (Social Engineering) →</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>CodSoft Cyber Security Internship - Task 2: Phishing Awareness Platform</p>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/data/quizzes.js"></script>
+  <script src="../js/quiz.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      new QuizEngine("lesson3-quiz-container", QUIZ_DATA.lesson3, "lesson3");
+    });
+  </script>
+</body>
+</html>

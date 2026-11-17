@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 4: Social Engineering Psychology & Tactics | PhishAware</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="brand">
+        <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+          <span>← Back to Dashboard</span>
+        </a>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle theme">🌓 Theme</button>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div style="margin-bottom: 2rem;">
+      <span class="hero-badge">Lesson 04</span>
+      <h1 style="font-size: 2.2rem; margin: 0.5rem 0 1rem 0;">Social Engineering: The Human Element</h1>
+      <p style="color: var(--text-muted); font-size: 1.1rem;">
+        Social engineering is the art of manipulating individuals into performing actions or releasing confidential information. Attackers exploit cognitive biases, emotional vulnerabilities, and social conditioning rather than software flaws.
+      </p>
+    </div>
+
+    <!-- The 6 Psychological Triggers -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.4rem; margin-bottom: 1.25rem;">The 6 Primary Psychological Triggers</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+
+        <div class="module-card">
+          <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">⏱️</div>
+          <h3 style="color: var(--danger);">1. Urgency & Scarcity</h3>
+          <p>
+            Attackers impose artificial, shrinking time constraints (e.g., "Respond within 15 minutes or your account will be locked!"). Time pressure activates the body's stress response, preventing logical scrutiny and cross-checking.
+          </p>
+        </div>
+
+        <div class="module-card">
+          <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">👔</div>
+          <h3 style="color: var(--primary);">2. Authority & Hierarchy</h3>
+          <p>
+            People are conditioned to comply with superiors. Attackers impersonate high-ranking figures—executives, police officers, tax inspectors, or senior legal counsel—to intimidate employees into skipping standard approval protocols.
+          </p>
+        </div>
+
+        <div class="module-card">
+          <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">😨</div>
+          <h3 style="color: var(--warning);">3. Fear & Consequences</h3>
+          <p>
+            Lures invoke severe penalties: lawsuits, tax arrest warrants, regulatory fines, or job termination. Victims rush to resolve the supposed violation to avert punishment.
+          </p>
+        </div>
+
+        <div class="module-card">
+          <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">💰</div>
+          <h3 style="color: var(--secondary);">4. Greed & Financial Enticement</h3>
+          <p>
+            Appeals to unexpected windfalls: lottery payouts, cryptocurrency doubling offers, unearned bonuses, or heavily discounted luxury goods requiring an upfront processing fee.
+          </p>
+        </div>
+
+        <div class="module-card">
+          <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔍</div>
+          <h3 style="color: var(--accent-purple);">5. Curiosity & Novelty</h3>
+          <p>
+            Exploits human interest in secret or scandalous information: "Leaked Executive Compensation List", "Celebrity Photos", or "Upcoming Layoff Roster".
+          </p>
+        </div>
+
+        <div class="module-card">
+          <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🤝</div>
+          <h3 style="color: var(--success);">6. Likability & Helpful Nature</h3>
+          <p>
+            Attackers exploit our natural human desire to be helpful or avoid being rude, feigning distress or needing urgent assistance to access a file or enter a building.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Specific Attack Methodologies -->
+    <section class="module-card" style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.4rem; margin-bottom: 1.25rem;">Tactical Social Engineering Methodologies</h2>
+      
+      <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+        <div>
+          <h4>🎭 Pretexting</h4>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            The attacker invents a credible scenario (the "pretext") and adopts a persona. For instance, pretending to be an external auditor needing compliance logs, or an insurance adjuster investigating a fraudulent claim.
+          </p>
+        </div>
+
+        <div style="border-top: 1px solid var(--border-color); padding-top: 1rem;">
+          <h4>🪤 Baiting</h4>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            Leaving a physical or digital trap. A classic physical example is leaving infected USB flash drives in parking lots labeled "Executive Salaries 2026". Digitally, it includes offering free pirated movies or game cheats bundled with trojans.
+          </p>
+        </div>
+
+        <div style="border-top: 1px solid var(--border-color); padding-top: 1rem;">
+          <h4>🚪 Tailgating (Piggybacking)</h4>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            A physical intrusion tactic where an unauthorized person closely follows an employee through an electronic badge-access door. Attackers often carry large delivery boxes or coffees so polite employees hold the door open for them.
+          </p>
+        </div>
+
+        <div style="border-top: 1px solid var(--border-color); padding-top: 1rem;">
+          <h4>👥 Direct Impersonation</h4>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            Assuming the identity of a known trusted coworker or vendor via phone, Slack, or email to request immediate actions like password resets or gift card purchases.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section class="quiz-section">
+      <div id="lesson4-quiz-container"></div>
+    </section>
+
+    <div style="display: flex; justify-content: space-between; margin-top: 2rem;">
+      <a href="lesson3-fake-logins-websites.html" class="btn btn-secondary">← Back to Lesson 3</a>
+      <a href="lesson5-defense-and-response.html" class="btn btn-primary">Next: Lesson 5 (Defense & Safety) →</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>CodSoft Cyber Security Internship - Task 2: Phishing Awareness Platform</p>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/data/quizzes.js"></script>
+  <script src="../js/quiz.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      new QuizEngine("lesson4-quiz-container", QUIZ_DATA.lesson4, "lesson4");
+    });
+  </script>
+</body>
+</html>

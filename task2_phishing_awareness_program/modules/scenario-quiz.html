@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scenario Lab: Spot the Phish | PhishAware</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="brand">
+        <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+          <span>← Back to Dashboard</span>
+        </a>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle theme">🌓 Theme</button>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div style="margin-bottom: 2rem;">
+      <span class="hero-badge">Interactive Laboratory</span>
+      <h1 style="font-size: 2.2rem; margin: 0.5rem 0 1rem 0;">Scenario Lab: Spot the Phish</h1>
+      <p style="color: var(--text-muted); font-size: 1.1rem;">
+        Put your threat analysis skills to the test. Examine each of the 6 simulated communications below and determine whether each message is <strong>Legitimate</strong> or a <strong>Phishing Attack</strong>.
+      </p>
+    </div>
+
+    <!-- Scenarios List Container -->
+    <div id="scenarios-container" style="display: flex; flex-direction: column; gap: 2rem;"></div>
+
+    <!-- Score Summary & Next Steps -->
+    <div id="lab-summary-card" class="module-card" style="display: none; text-align: center; margin-top: 3rem; border: 2px solid var(--secondary);">
+      <h2 id="lab-score-title" style="font-size: 1.8rem; margin-bottom: 0.5rem;">Lab Completed!</h2>
+      <div id="lab-score-display" style="font-size: 3rem; font-weight: 800; color: var(--primary); margin-bottom: 0.5rem;">0 / 6</div>
+      <p id="lab-score-text" style="color: var(--text-muted); margin-bottom: 1.5rem;"></p>
+      <a href="final-assessment.html" class="btn btn-success" style="font-size: 1.1rem; padding: 0.75rem 2rem;">
+        Proceed to Final Certification Exam →
+      </a>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; margin-top: 3rem;">
+      <a href="case-studies.html" class="btn btn-secondary">← Back to Case Studies</a>
+      <a href="final-assessment.html" class="btn btn-primary">Next: Final Exam & Certificate →</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>CodSoft Cyber Security Internship - Task 2: Phishing Awareness Platform</p>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/data/quizzes.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("scenarios-container");
+      const scenarios = QUIZ_DATA.scenarios;
+      let evaluatedCount = 0;
+      let score = 0;
+
+      scenarios.forEach((sc, idx) => {
+        const card = document.createElement("article");
+        card.className = "module-card";
+        card.id = `scenario-card-${idx}`;
+
+        const title = document.createElement("h3");
+        title.textContent = sc.title;
+        title.style.marginBottom = "0.75rem";
+
+        // Simulated message box
+        const emailBox = document.createElement("div");
+        emailBox.style.background = "var(--bg-alt)";
+        emailBox.style.border = "1px solid var(--border-color)";
+        emailBox.style.borderRadius = "8px";
+        emailBox.style.padding = "1.25rem";
+        emailBox.style.marginBottom = "1.25rem";
+
+        const senderRow = document.createElement("div");
+        senderRow.style.fontSize = "0.9rem";
+        senderRow.style.marginBottom = "0.35rem";
+        senderRow.innerHTML = `<strong>From:</strong> <code>${escapeHtml(sc.sender)}</code>`;
+
+        const subjectRow = document.createElement("div");
+        subjectRow.style.fontSize = "0.9rem";
+        subjectRow.style.marginBottom = "0.75rem";
+        subjectRow.innerHTML = `<strong>Subject:</strong> <code>${escapeHtml(sc.subject)}</code>`;
+
+        const bodyRow = document.createElement("div");
+        bodyRow.style.fontSize = "0.95rem";
+        bodyRow.style.lineHeight = "1.6";
+        bodyRow.style.borderTop = "1px dashed var(--border-color)";
+        bodyRow.style.paddingTop = "0.75rem";
+        bodyRow.textContent = sc.bodyText;
+
+        emailBox.appendChild(senderRow);
+        emailBox.appendChild(subjectRow);
+        emailBox.appendChild(bodyRow);
+
+        // Decision Buttons
+        const buttonGroup = document.createElement("div");
+        buttonGroup.style.display = "flex";
+        buttonGroup.style.gap = "1rem";
+        buttonGroup.id = `btn-group-${idx}`;
+
+        const phishBtn = document.createElement("button");
+        phishBtn.className = "btn btn-secondary";
+        phishBtn.textContent = "🚩 Flag as Phishing";
+
+        const legitBtn = document.createElement("button");
+        legitBtn.className = "btn btn-secondary";
+        legitBtn.textContent = "✔ Mark as Legitimate";
+
+        buttonGroup.appendChild(phishBtn);
+        buttonGroup.appendChild(legitBtn);
+
+        // Feedback Drawer
+        const feedbackBox = document.createElement("div");
+        feedbackBox.id = `feedback-${idx}`;
+        feedbackBox.style.display = "none";
+        feedbackBox.style.marginTop = "1rem";
+        feedbackBox.style.padding = "1rem";
+        feedbackBox.style.borderRadius = "6px";
+
+        const handleDecision = (userFlaggedPhish) => {
+          phishBtn.disabled = true;
+          legitBtn.disabled = true;
+          evaluatedCount++;
+
+          const isActuallyPhish = sc.isPhishing;
+          const isCorrect = userFlaggedPhish === isActuallyPhish;
+
+          if (isCorrect) score++;
+
+          feedbackBox.style.display = "block";
+          if (isCorrect) {
+            feedbackBox.style.backgroundColor = "var(--success-light)";
+            feedbackBox.style.border = "1px solid var(--success-border)";
+            feedbackBox.innerHTML = `<h4 style="color:var(--success);">✔ Correct Evaluation!</h4>`;
+          } else {
+            feedbackBox.style.backgroundColor = "var(--danger-light)";
+            feedbackBox.style.border = "1px solid var(--danger-border)";
+            feedbackBox.innerHTML = `<h4 style="color:var(--danger);">✘ Incorrect Judgment.</h4>`;
+          }
+
+          const explP = document.createElement("p");
+          explP.style.fontSize = "0.9rem";
+          explP.style.marginTop = "0.35rem";
+          explP.textContent = `This message is ${isActuallyPhish ? "a PHISHING ATTACK." : "a LEGITIMATE communication."}`;
+          feedbackBox.appendChild(explP);
+
+          const indList = document.createElement("ul");
+          indList.style.marginLeft = "1.5rem";
+          indList.style.marginTop = "0.5rem";
+          indList.style.fontSize = "0.85rem";
+          sc.indicators.forEach(ind => {
+            const li = document.createElement("li");
+            li.textContent = ind;
+            indList.appendChild(li);
+          });
+          feedbackBox.appendChild(indList);
+
+          // If all 6 evaluated, update AppState & show summary
+          if (evaluatedCount === scenarios.length) {
+            const pct = Math.round((score / scenarios.length) * 100);
+            AppState.markCompleted("scenario_quiz", pct);
+
+            const summaryCard = document.getElementById("lab-summary-card");
+            const scoreDisplay = document.getElementById("lab-score-display");
+            const scoreText = document.getElementById("lab-score-text");
+
+            summaryCard.style.display = "block";
+            scoreDisplay.textContent = `${score} / ${scenarios.length} (${pct}%)`;
+            scoreText.textContent = `You correctly identified ${score} of the 6 scenarios. Your scenario lab record is saved!`;
+            summaryCard.scrollIntoView({ behavior: "smooth" });
+          }
+        };
+
+        phishBtn.addEventListener("click", () => handleDecision(true));
+        legitBtn.addEventListener("click", () => handleDecision(false));
+
+        card.appendChild(title);
+        card.appendChild(emailBox);
+        card.appendChild(buttonGroup);
+        card.appendChild(feedbackBox);
+
+        container.appendChild(card);
+      });
+
+      function escapeHtml(text) {
+        const div = document.createElement("div");
+        div.textContent = text;
+        return div.innerHTML;
+      }
+    });
+  </script>
+</body>
+</html>

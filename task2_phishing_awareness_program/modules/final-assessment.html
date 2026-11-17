@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comprehensive Final Assessment & Certificate | PhishAware</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="brand">
+        <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+          <span>← Back to Dashboard</span>
+        </a>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle theme">🌓 Theme</button>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div style="margin-bottom: 2rem;">
+      <span class="hero-badge">Certification Examination</span>
+      <h1 style="font-size: 2.2rem; margin: 0.5rem 0 1rem 0;">Comprehensive Security Assessment</h1>
+      <p style="color: var(--text-muted); font-size: 1.1rem;">
+        Complete this 15-question examination to validate your cybersecurity proficiency across email vectors, lookalike domains, TLS encryption nuances, social engineering tactics, and incident containment. Achieving <strong>80% or higher</strong> unlocks your official Certificate of Completion.
+      </p>
+    </div>
+
+    <!-- Examination Container -->
+    <section class="quiz-section" id="exam-wrapper">
+      <div id="final-exam-container"></div>
+    </section>
+
+    <!-- Certificate Generator Section (Hidden until passed) -->
+    <section id="cert-generation-panel" class="module-card" style="display: none; margin-top: 3rem; border: 2px solid var(--success);">
+      <div style="text-align: center; margin-bottom: 1.5rem;">
+        <span style="font-size: 2.5rem;">🎓</span>
+        <h2 style="font-size: 1.8rem; color: var(--success); margin-top: 0.5rem;">Congratulations! You have passed the certification exam.</h2>
+        <p style="color: var(--text-muted);">Enter your full name below to generate your personalized Certificate of Completion.</p>
+      </div>
+
+      <div style="max-width: 450px; margin: 0 auto; display: flex; gap: 0.75rem;">
+        <input type="text" id="cert-name-input" class="mock-input" placeholder="Enter Your Full Name" style="background: var(--bg-surface); cursor: text;">
+        <button id="generate-cert-btn" class="btn btn-success" style="white-space: nowrap;">
+          Generate Certificate
+        </button>
+      </div>
+
+      <!-- Live Certificate Output Target -->
+      <div id="certificate-output-zone" style="margin-top: 2.5rem;"></div>
+    </section>
+
+    <div style="display: flex; justify-content: space-between; margin-top: 3rem;">
+      <a href="scenario-quiz.html" class="btn btn-secondary">← Back to Scenario Lab</a>
+      <a href="../index.html" class="btn btn-primary">Return to Dashboard →</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>CodSoft Cyber Security Internship - Task 2: Phishing Awareness Platform</p>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/data/quizzes.js"></script>
+  <script src="../js/quiz.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      let finalScore = 0;
+
+      const examEngine = new QuizEngine(
+        "final-exam-container",
+        QUIZ_DATA.finalExam,
+        "final_assessment",
+        80, // 80% passing grade (12/15)
+        (result) => {
+          if (result.passed) {
+            finalScore = result.score;
+            const certPanel = document.getElementById("cert-generation-panel");
+            certPanel.style.display = "block";
+            certPanel.scrollIntoView({ behavior: "smooth" });
+
+            // Restore previously entered name if available
+            try {
+              const savedName = localStorage.getItem("codsoft_learner_name");
+              if (savedName) {
+                document.getElementById("cert-name-input").value = savedName;
+                CertificateService.renderCertificate("certificate-output-zone", savedName, finalScore);
+              }
+            } catch (e) {}
+          }
+        }
+      );
+
+      // Generate button listener
+      const genBtn = document.getElementById("generate-cert-btn");
+      const nameInput = document.getElementById("cert-name-input");
+
+      genBtn.addEventListener("click", () => {
+        const enteredName = nameInput.value.trim();
+        if (!enteredName) {
+          alert("Please enter your name to display on the certificate.");
+          return;
+        }
+
+        try {
+          localStorage.setItem("codsoft_learner_name", enteredName);
+        } catch (e) {}
+
+        CertificateService.renderCertificate("certificate-output-zone", enteredName, finalScore || 85);
+        document.getElementById("certificate-output-zone").scrollIntoView({ behavior: "smooth" });
+      });
+    });
+  </script>
+</body>
+</html>
